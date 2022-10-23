@@ -1,0 +1,128 @@
+{
+	"id": "f14cb4ed-d6e6-460b-a981-10c36e68ee39",
+	"name": "test",
+	"timestamp": "2022-10-23T18:23:52.960Z",
+	"collection_id": "24018239-94958b5e-9f11-4226-9780-453f0cbf9d07",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "8908f84b-25c8-460a-9ced-cee4faa9be2f",
+			"name": "Get 404 user",
+			"url": "https://back-end-labs.herokuapp.com/usr=123",
+			"time": 62,
+			"responseCode": {
+				"code": 404,
+				"name": "NOT FOUND"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				62
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e8b24110-16e3-4542-bf46-b996670d3f52",
+			"name": "Get user",
+			"url": "https://back-end-labs.herokuapp.com/usr=4d19b4f8-52d7-11ed-bc1c-a4b1c1d53329",
+			"time": 61,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				61
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2cdd667e-f889-4ae6-bce1-2b73b28574fa",
+			"name": "Get category1",
+			"url": "https://back-end-labs.herokuapp.com/category=05c809fa-52d8-11ed-bd78-a4b1c1d53329",
+			"time": 62,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				62
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "18b7f9d2-382a-44b6-b9e3-df8e6b4ee011",
+			"name": "Get category2",
+			"url": "https://back-end-labs.herokuapp.com/category=1a8bd74a-52d8-11ed-81af-a4b1c1d53329",
+			"time": 61,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				61
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "bf2492fb-17df-42c9-b981-157482559a1c",
+			"name": "Get 404 category",
+			"url": "https://back-end-labs.herokuapp.com/category=05c809f",
+			"time": 62,
+			"responseCode": {
+				"code": 404,
+				"name": "NOT FOUND"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				62
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 308,
+	"collection": {
+		"requests": [
+			{
+				"id": "8908f84b-25c8-460a-9ced-cee4faa9be2f",
+				"method": "GET"
+			},
+			{
+				"id": "e8b24110-16e3-4542-bf46-b996670d3f52",
+				"method": "GET"
+			},
+			{
+				"id": "2cdd667e-f889-4ae6-bce1-2b73b28574fa",
+				"method": "GET"
+			},
+			{
+				"id": "18b7f9d2-382a-44b6-b9e3-df8e6b4ee011",
+				"method": "GET"
+			},
+			{
+				"id": "bf2492fb-17df-42c9-b981-157482559a1c",
+				"method": "GET"
+			}
+		]
+	}
+}
