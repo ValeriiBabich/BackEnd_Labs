@@ -1,9 +1,10 @@
-import uuid
+from uuid import uuid1
 
-class Category():
+
+class Category:
 
     def __init__(self, name):
-        self.__id = uuid.uuid1()
+        self.__id = uuid1()
         self.__name = name
 
     def get_id(self):

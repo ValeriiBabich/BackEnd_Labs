@@ -1,0 +1,4 @@
+id: 0f4dddc2-52d5-11ed-b39e-a4b1c1d53329 user_id: 078f3bf8-52d5-11ed-afda-a4b1c1d53329 category_id: 0b306fac-52d5-11ed-b3bd-a4b1c1d53329 date: 23/10/2022 16:17:35 cost: 123$
+id: 216f8bcc-52d5-11ed-adc3-a4b1c1d53329 user_id: 1d597372-52d5-11ed-8012-a4b1c1d53329 category_id: 192698de-52d5-11ed-a390-a4b1c1d53329 date: 23/10/2022 16:18:06 cost: 124$
+id: 2ea164e6-52d5-11ed-8f2c-a4b1c1d53329 user_id: 078f3bf8-52d5-11ed-afda-a4b1c1d53329 category_id: 0b306fac-52d5-11ed-b3bd-a4b1c1d53329 date: 23/10/2022 16:18:28 cost: 6666$
+id: 83c2b81c-52d5-11ed-b2b8-a4b1c1d53329 user_id: 078f3bf8-52d5-11ed-afda-a4b1c1d53329 category_id: 192698de-52d5-11ed-a390-a4b1c1d53329 date: 23/10/2022 16:20:51 cost: 123$

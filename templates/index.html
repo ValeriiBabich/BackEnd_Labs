@@ -1,21 +1,247 @@
 {% extends 'base.html' %}
 {% block title %}Lab{% endblock %}
 {% block main %}
-<h1>Hello </h1>
-<form action="/createUser" method='POST'>
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Type username" aria-label="Type username" aria-describedby="button-addon2" name="user" >
-    <button type="submit" class="btn btn-outline-secondary"  id="button-addon2">Create User</button>
-  </div>
-</form>
 
-<form action="/createCategory" method='POST'>
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Type category" aria-label="Type category" aria-describedby="button-addon2" name="category" >
-    <button type="submit" class="btn btn-outline-secondary">Create Category</button>
-  </div>
-</form>
+<!-- Creator section -->
+<div class="p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded-end border-3">
+    <div class="row align-items-start">
+        <div class="col">
+        <h1>Create User </h1>
+        <form action="/createUser" method='POST'>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Type username" aria-label="Type username" aria-describedby="button-addon2" name="user" required>
+            <button type="submit" class="btn btn-outline-secondary"  id="button-addon2">Create User</button>
+          </div>
+        </form>
+    </div>
+
+        <div class="col">
+            <h1>Create Category</h1>
+            <form action="/createCategory" method='POST'>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Type category" aria-label="Type category" aria-describedby="button-addon2" name="category" required>
+                <button type="submit" class="btn btn-outline-secondary">Create Category</button>
+              </div>
+            </form>
+        </div>
+
+        <div class="col">
+            <form action="/createNote" method='POST'>
+            <h1>Create note</h1>
+
+            <select name="users" class="form-select" aria-label="Choose user" required>
+              <option selected value="">Choose user</option>
+              {% for key in users %}
+                <option value={{key}}>{{users[key]}}</option>
+
+                {% endfor %}
+            </select>
+
+            <select name="categories" class="form-select" aria-label="Choose category" required>
+              <option selected value="">Choose category</option>
+              {% for key in categories %}
+                <option value={{key}}>{{categories[key]}}</option>
+
+                {% endfor %}
+            </select>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text">$</span>
+              <input type="number" class="form-control" placeholder="Type cost" aria-label="Type cost" name="cost" required>
+            </div>
+
+            <button type="submit" class="btn btn-outline-secondary" id="liveToastBtn">Create Note</button>
+        </form>
+        </div>
+    </div>
+</div>
 
 
+<!-- Show buttons -->
+<div class="row align-items-start">
+    <div class="col"><button type="button" class="btn btn-outline-secondary" id="showNotes" onclick="showNotes()">Show Notes</button></div>
+    <div class="col">
+         <select id="selectedUser" name="selectedUser" class="form-select" aria-label="Choose user">
+              <option value="" selected>Choose user</option>
+              {% for key in users %}
+              <option value={{key}}>{{users[key]}}</option>
+              {% endfor %}
+         </select>
+    </div>
+    <div class="col">
+        <select id="selectedCategory" name="selectedCategory" class="form-select" aria-label="Choose category">
+            <option value="" selected>Choose category</option>
+            {% for key in categories %}
+            <option value={{key}}>{{categories[key]}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+
+<!-- Notes table -->
+<div id="notes" class="p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded-end border-3" hidden>
+    <h1>Notes</h1>
+    <table class="table table-striped" id="notesTable">
+      <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">Category</th>
+            <th scope="col">Date</th>
+            <th scope="col">Cost</th>
+            <th scope="col" hidden>user id</th>
+            <th scope="col" hidden>category id</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for i in range(notes|length)%}
+            <tr id={{i+1}} hidden>
+                <th scope="row">{{i + 1}}</th>
+                <td>{{ users[notes[i][1]] }}</td>
+                <td>{{ categories[notes[i][2]] }}</td>
+                <td>{{notes[i][3]}}</td>
+                <td>{{notes[i][4]}}$</td>
+                <td hidden>{{ notes[i][1] }}</td>
+                <td hidden>{{ notes[i][2] }}</td>
+            </tr>
+          {% endfor %}
+      </tbody>
+
+    </table>
+</div>
+
+<script>
+    buttonShowNotes = document.getElementById('showNotes')
+    notes = document.getElementById('notes')
+    selectedUser = document.getElementById('selectedUser')
+    selectedCategory = document.getElementById('selectedCategory')
+    notesTable = document.getElementById('notesTable')
+    data = [...notesTable.rows].map(t => [...t.children].map(u => u.innerText))
+
+
+    showNotes = function(){
+        if (buttonShowNotes.textContent === 'Show Notes'){
+            if(selectedUser.value !== '' && selectedCategory.value !== ''){
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    if (selectedCategory.value === data[i][6] && selectedUser.value === data[i][5]){
+                        tbody.hidden = false
+                    }
+                }
+            }
+            else if (selectedCategory.value !== ''){
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    if (selectedCategory.value === data[i][6]){
+                        tbody.hidden = false
+                    }
+                }
+            }
+            else if (selectedUser.value !== ''){
+
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    if (selectedUser.value === data[i][5]){
+                        tbody.hidden = false
+                    }
+                }
+
+            }
+            for (let i=1; i<data.length; i++){
+                tbody = document.getElementById(`${i}`)
+                tbody.hidden = false
+            }
+            buttonShowNotes.textContent = 'Hide Notes'
+            notes.hidden = false
+        }
+        else{
+            buttonShowNotes.textContent = 'Show Notes'
+            notes.hidden = true
+            for (let i=1; i<data.length; i++){
+                tbody = document.getElementById(`${i}`)
+                    tbody.hidden = true
+            }
+        }
+    }
+
+
+    selectedUser.onchange = function(){
+        for (let i=1; i<data.length; i++){
+                tbody = document.getElementById(`${i}`)
+                tbody.hidden = true
+        }
+        if(selectedUser.value !== '' && selectedCategory.value !== ''){
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    if (selectedCategory.value === data[i][6] && selectedUser.value === data[i][5]){
+                        tbody.hidden = false
+                    }
+                }
+            }
+            else if (selectedCategory.value !== ''){
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    if (selectedCategory.value === data[i][6]){
+                        tbody.hidden = false
+                    }
+                }
+            }
+            else if (selectedUser.value !== ''){
+
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    if (selectedUser.value === data[i][5]){
+                        tbody.hidden = false
+                    }
+                }
+
+            }else{
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    tbody.hidden = false
+                }
+            }
+    }
+
+    selectedCategory.onchange = function(){
+        for (let i=1; i<data.length; i++){
+                tbody = document.getElementById(`${i}`)
+                tbody.hidden = true
+        }
+        if(selectedUser.value !== '' && selectedCategory.value !== ''){
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    if (selectedCategory.value === data[i][6] && selectedUser.value === data[i][5]){
+                        tbody.hidden = false
+                    }
+                }
+            }
+            else if (selectedCategory.value !== ''){
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    if (selectedCategory.value === data[i][6]){
+                        tbody.hidden = false
+                    }
+                }
+            }
+            else if (selectedUser.value !== ''){
+
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    if (selectedUser.value === data[i][5]){
+                        tbody.hidden = false
+                    }
+                }
+
+            }
+            else{
+                for (let i=1; i<data.length; i++){
+                    tbody = document.getElementById(`${i}`)
+                    tbody.hidden = false
+                }
+            }
+    }
+</script>
 
 {% endblock %}
