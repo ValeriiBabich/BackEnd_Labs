@@ -35,11 +35,6 @@ def create_user():
         return redirect('/')
 
 
-@app.route("/<usr>")
-def user(usr):
-    return f"name: {usr}"
-
-
 @app.route('/createCategory', methods=['POST', 'GET'])
 def create_category():
     if request.method == 'POST':
@@ -67,3 +62,24 @@ def create_note():
             f"id: {note.get_id()} user_id: {note.get_user_id()} category_id: {note.get_category_id()} date: {note.get_date()} cost: {note.get_cost()}$\n")
 
     return redirect('/')
+
+
+@app.route("/usr=<usr>")
+def user(usr):
+    update_users()
+    if usr in USERS:
+        return f"username: {USERS[usr]}"
+
+    return redirect("/404")
+
+@app.route("/category=<ctgry>")
+def category(ctgry):
+    update_categories()
+    if ctgry in CATEGORIES:
+        return f"category: {CATEGORIES[ctgry]}"
+
+    return redirect("/404")
+
+@app.route("/note=<nt>")
+def note(nt):
+    return f"note id: {nt}"

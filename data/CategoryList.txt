@@ -1,2 +1,0 @@
-id: 0b306fac-52d5-11ed-b3bd-a4b1c1d53329 name: Babich
-id: 192698de-52d5-11ed-a390-a4b1c1d53329 name: Valera
