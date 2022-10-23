@@ -1,0 +1,1 @@
+id: 663f17a6-52d8-11ed-9e44-a4b1c1d53329 user_id: 4d19b4f8-52d7-11ed-bc1c-a4b1c1d53329 category_id: 05c809fa-52d8-11ed-bd78-a4b1c1d53329 date: 23/10/2022 16:41:30 cost: 123$
